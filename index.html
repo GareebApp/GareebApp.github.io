@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قريب | Gareeb</title>
+  <style>
+    :root {
+      --primary: #006599;
+      --accent: #febd59;
+      --shade1: #e6f1f6;
+      --shade2: #cce3ee;
+      --shade3: #b3d5e6;
+      --shade4: #99c7dd;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: #fff; color: #111; }
+    nav { position: fixed; top: 0; width: 100%; background: var(--primary); padding: 1em 3em; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    nav ul { display: flex; list-style: none; gap: 2em; }
+    nav a { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: var(--accent); }
+    .lang-switch { background: var(--accent); border: none; padding: 0.4em 1.2em; border-radius: 30px; cursor: pointer; font-weight: 600; color: #000; transition: all 0.3s; }
+    .lang-switch:hover { background: #ffd277; }
+    .hero { padding-top: 6em; display: flex; flex-direction: column; align-items: center; text-align: center; background: linear-gradient(135deg, var(--primary), #004766); color: white; padding-bottom: 4em; }
+    .hero h1 { font-size: 3rem; margin-bottom: 0.5em; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2em; }
+    .sections { margin: 0; padding: 0; }
+    .section { width: 100%; padding: 4em 2em; }
+    #about { background-color: var(--shade1); }
+    #story { background-color: var(--shade2); }
+    #hiring { background-color: var(--shade3); }
+    #contact { background-color: var(--shade4); }
+    .section h2 { font-size: 2rem; color: var(--primary); margin-bottom: 1em; text-align: center; }
+    .section p { font-size: 1.1rem; line-height: 1.7; text-align: center; max-width: 800px; margin: auto; }
+    .store-links { display: flex; justify-content: center; gap: 2em; margin-top: 2em; }
+    .store-links img { height: 55px; transition: transform 0.3s; }
+    .store-links img:hover { transform: scale(1.05); }
+    footer { background: #f3f3f3; text-align: center; padding: 2em 1em; font-size: 0.9rem; color: #666; margin-top: 2em; }
+    .rtl { direction: rtl; text-align: right; }
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 1s ease forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 768px) { nav { flex-direction: row; justify-content: space-between; } nav ul { display: none; } .menu-toggle { display: flex !important; } }
+    .menu-toggle { display: none; flex-direction: column; justify-content: center; cursor: pointer; gap: 5px; }
+    .menu-toggle span { display: block; width: 25px; height: 3px; background: white; }
+    .mobile-nav { display: none; flex-direction: column; background: var(--primary); width: 100%; padding: 1em 0; position: absolute; top: 100%; left: 0; z-index: 999; }
+    .mobile-nav a { padding: 1em; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+    .contact-btn { display: inline-block; padding: 0.8em 1.5em; background: var(--accent); color: #000; font-weight: bold; border-radius: 50px; text-decoration: none; transition: background 0.3s, transform 0.2s; }
+    .contact-btn:hover { background: #ffd277; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <nav role="navigation" aria-label="Main navigation">
+    <div style="display: flex; align-items: center; gap: 1em;">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <img src="https://i.postimg.cc/VNrbwbR9/app-icon.png" alt="Gareeb Logo" style="height: 40px; border-radius: 50%;" loading="lazy">
+    </div>
+    <ul>
+      <li><a href="#about" data-en="About Us" data-ar="عن قريب">عن قريب</a></li>
+      <li><a href="#story" data-en="Our story" data-ar="قصتنا">قصتنا</a></li>
+      <li><a href="#hiring" data-en="Hiring" data-ar="التوظيف">التوظيف</a></li>
+      <li><a href="#contact" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a></li>
+    </ul>
+    <div class="mobile-nav" id="mobileMenu">
+      <a href="#about" data-en="About Us" data-ar="عن قريب">عن قريب</a>
+      <a href="#story" data-en="Our story" data-ar="قصتنا">قصتنا</a>
+      <a href="#hiring" data-en="Hiring" data-ar="التوظيف">التوظيف</a>
+      <a href="#contact" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</a>
+      <button class="lang-switch" data-en="عربي" data-ar="English" onclick="switchLang()">English</button>
+    </div>
+    <button class="lang-switch" data-en="عربي" data-ar="English" onclick="switchLang()">English</button>
+  </nav>
+  <div class="hero fade-in">
+    <h1 data-en="Gareeb makes training services right next to you" data-ar="خدمات التدريب صارت أقرب مع قريب">خدمات التدريب صارت أقرب مع قريب</h1>
+    <p data-en="Smooth booking experience" data-ar="تجربة حجز أفضل">تجربة حجز أفضل</p>
+    <div class="store-links">
+      <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" loading="lazy"></a>
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" loading="lazy"></a>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="section fade-in" id="about">
+      <h2 data-en="About Us" data-ar="من نحن">من نحن</h2>
+      <p data-en="We provide an easy-to-use platform to help you book training rooms and services" data-ar="نقدّم لك منصة سهلة الاستخدام لحجز قاعات وخدمات التدريب.">نقدم لك منصة سهلة الاستخدام لحجز قاعات وخدمات التدريب حول المملكة</p>
+    </div>
+    <div class="section fade-in" id="story">
+      <h2 data-en="Our Story" data-ar="قصتنا">قصتنا</h2>
+      <p data-en="Our journey began with a mission to simplify the booking process, connecting people with perfect training services" data-ar="بدأت رحلتنا برغبة في تبسيط عملية الحجز وربط الناس بالأماكن التي تناسب احتياجاتهم">بدأت رحلتنا برغبة في تبسيط عملية الحجز وربط الناس بالأماكن التي تناسب احتياجاتهم</p>
+    </div>
+    <div class="section fade-in" id="hiring">
+      <h2 data-en="We’re Hiring" data-ar="فرص التوظيف">فرص التوظيف</h2>
+      <p data-en="Join our team of passionate individuals building the future of training services" data-ar="انضم إلى فريقنا من الأفراد المتحمسين لبناء مستقبل الخدمات التدريبية">انضم إلى فريقنا من الأفراد المتحمسين لبناء مستقبل الخدمات التدريبية</p>
+    </div>
+    <div class="section fade-in" id="contact">
+      <h2 data-en="Contact Us" data-ar="اتصل بنا">اتصل بنا</h2>
+      <p>
+        <a href="mailto:hi@gareeb.sa" class="contact-btn">hi@gareeb.sa</a>
+      </p>
+    </div>
+  </div>
+  <footer>&copy; 2025 Gareeb. All rights reserved.</footer>
+  <script>
+    function applyLang(lang){
+      const root = document.documentElement; 
+      let isAr = lang == 'ar';
+      root.lang = isAr ? 'ar' : 'en';
+      root.dir  = isAr ? 'rtl' : 'ltr';
+      document.body.classList.toggle('rtl', isAr);
+    }
+    let isArabic = true;
+    window.addEventListener('DOMContentLoaded', () => {
+      let lang = isArabic ? 'ar' : 'en';
+      applyLang(lang);
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const ar = el.dataset.ar; const en = el.dataset.en;
+        el.textContent = (ar || en || el.textContent || '...');
+        if(el.tagName === 'IMG') el.alt = (ar || en || el.alt || 'Image');
+      });
+      document.querySelectorAll('.lang-switch').forEach(btn => btn.textContent = 'English');
+    });
+    function switchLang(){
+      isArabic = !isArabic;
+      applyLang(isArabic ? 'ar' : 'en');
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = isArabic ? el.dataset.ar : el.dataset.en;
+        el.textContent = (text || el.textContent || '...');
+        if(el.tagName === 'IMG') el.alt = (text || el.alt || 'Image');
+      });
+      document.querySelectorAll('.lang-switch').forEach(btn => {
+        btn.textContent = isArabic ? 'English' : 'عربي';
+      });
+    }
+    function toggleMenu(){
+      const menu = document.getElementById('mobileMenu');
+      const willOpen = menu.style.display !== 'flex';
+      menu.style.display = willOpen ? 'flex' : 'none';
+      const toggler = document.querySelector('.menu-toggle');
+      if(toggler) toggler.setAttribute('aria-expanded', String(willOpen));
+    }
+  </script>
+</body>
+</html>

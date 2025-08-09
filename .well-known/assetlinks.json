@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "sa.gareeb.app",
+            "sha256_cert_fingerprints": [
+                "D9:E9:45:53:47:2E:A0:2E:DD:6A:E9:12:28:3E:2A:9A:79:E3:A1:06:CC:2D:C2:0E:A9:B7:B2:6F:6F:38:A9:93"
+            ]
+        }
+    }
+]
