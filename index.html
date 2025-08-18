@@ -5,6 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-key="pageTitle">قريب | قاعات وخدمات التدريب</title>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 
   <!-- SEO Meta Tags -->
   <meta name="description" data-key="metaDescription"
@@ -41,11 +49,7 @@
   <meta property="twitter:image" content="https://gareeb.sa/assets/images/logo.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;700&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PWQBLMHY3"></script>
@@ -53,102 +57,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
-    gtag('config', 'G-3PWQBLMHY3');
   </script>
 
-  <style>
-    :root {
-      --bg-primary: #F9FAFB;
-      --bg-secondary: #FFFFFF;
-      --text-headings: #006599;
-      --text-body: #4B5563;
-      --text-body-subtle: #374151;
-    }
-
-    .dark {
-      --bg-primary: #121212;
-      --bg-secondary: #1E1E1E;
-      --text-headings: #FFFFFF;
-      --text-body: #D1D5DB;
-      --text-body-subtle: #9CA3AF;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-      background-color: var(--bg-primary);
-      color: var(--text-body);
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.lang-ar {
-      font-family: 'Cairo', sans-serif;
-    }
-
-    .section-bg {
-      background-color: var(--bg-secondary);
-    }
-
-    .text-headings {
-      color: var(--text-headings);
-    }
-
-    .text-body-subtle {
-      color: var(--text-body-subtle);
-    }
-
-    .bg-primary-brand {
-      background-color: #006599;
-    }
-
-    .text-primary-brand {
-      color: #006599;
-    }
-
-    .bg-accent {
-      background-color: #febd59;
-    }
-
-    .text-accent {
-      color: #febd59;
-    }
-
-    .payment-logos {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .logo-bg {
-      background: #fff;
-      border-radius: 4px;
-      padding: 2px 4px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-bg img {
-      height: 28px;
-      width: auto;
-      opacity: 0.95;
-      transition: transform 120ms ease, opacity 120ms ease;
-    }
-
-    .logo-bg:hover img {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    @media (max-width: 480px) {
-      .logo-bg img {
-        height: 22px;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -251,13 +161,11 @@
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
           <a href="https://apps.apple.com/app/id6749870618"
             class="transform hover:scale-105 transition-transform duration-300">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-              alt="Download on the App Store" class="h-14">
+            <img src="assets/svg/app-store-badge.svg" alt="Download on the App Store" class="h-14 w-auto">
           </a>
           <a href="https://play.google.com/store/apps/details?id=sa.gareeb.app"
             class="transform hover:scale-105 transition-transform duration-300">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-              alt="Get it on Google Play" class="h-14">
+            <img src="assets/images/play-badge.png" alt="Get it on Google Play" class="h-14 w-auto">
           </a>
         </div>
       </div>
@@ -337,6 +245,20 @@
     </div>
   </footer>
 
+  <div id="consent-banner" class="hidden fixed bottom-0 left-0 right-0 section-bg shadow-lg p-4 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-body-subtle" data-key="consentText">We use cookies to enhance your experience. By
+        continuing to visit this site you agree to our use of cookies.</p>
+      <div class="flex gap-4">
+        <button id="consent-accept" class="bg-primary-brand text-white px-5 py-2 rounded-md"
+          data-key="consentAccept">Accept</button>
+        <button id="consent-decline"
+          class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-5 py-2 rounded-md"
+          data-key="consentDecline">Decline</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const translations = {
       en: {
@@ -364,13 +286,16 @@
         footerSocial: "Follow Us",
         footerTermsLink: "Terms & Conditions",
         appNameFooter: "Gareeb",
+        consentText: "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+        consentAccept: "Accept",
+        consentDecline: "Decline",
       },
       ar: {
         pageTitle: "قريب | قاعات وخدمات التدريب",
         metaDescription: "قريب هو نظام متكامل لعرض وحجز قاعات التدريب في جميع مناطق المملكة العربية السعودية. اعثر على قاعات تدريبية مجهزة بالكامل وادفع إلكترونياً.",
         appName: "قريب",
         heroTitle: "قريب: نظام متكامل لعرض وحجز قاعات التدريب",
-        heroSubtitle: "نظام متكامل لعرض وحجز قاعات التدريب في جميع مناطق المملكة العربية السعودية. مزوّد بأنظمة متطورة لإدارة الحجوزات بشكل آلي، ووسائل الدفع الإلكتروني.",
+        heroSubtitle: "نظام متكامل لعرض وحجز قاعات التدريب في جميع مناطق المملكة العربية السعودية. مزوّد بأنظمة متطورة لإدارة الحجوزات بشكل آلي, ووسائل الدفع الإلكتروني.",
         getTheApp: "حمّل التطبيق",
         serveTitle: "من نخدم؟",
         serveProvidersTitle: "مزوّدي الخدمة",
@@ -390,6 +315,9 @@
         footerSocial: "تابعنا",
         footerTermsLink: "الشروط والأحكام",
         appNameFooter: "قريب",
+        consentText: "نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك. من خلال الاستمرار في زيارة هذا الموقع فإنك توافق على استخدامنا لملفات تعريف الارتباط.",
+        consentAccept: "قبول",
+        consentDecline: "رفض",
       }
     };
 
@@ -474,6 +402,40 @@
       const initialTheme = savedTheme || 'light';
       applyTheme(initialTheme);
       setLanguage(currentLang);
+
+      // Consent Banner Logic
+      const consentBanner = document.getElementById('consent-banner');
+      const acceptBtn = document.getElementById('consent-accept');
+      const declineBtn = document.getElementById('consent-decline');
+
+      function initAnalytics() {
+        gtag('config', 'G-3PWQBLMHY3');
+      }
+
+      function hideBanner() {
+        if (consentBanner) consentBanner.style.display = 'none';
+      }
+
+      if (acceptBtn && declineBtn) {
+        acceptBtn.addEventListener('click', () => {
+          localStorage.setItem('consent_given', 'true');
+          initAnalytics();
+          hideBanner();
+        });
+
+        declineBtn.addEventListener('click', () => {
+          localStorage.setItem('consent_given', 'false');
+          hideBanner();
+        });
+      }
+
+      const consent = localStorage.getItem('consent_given');
+
+      if (consent === 'true') {
+        initAnalytics();
+      } else if (consent === null && consentBanner) {
+        consentBanner.style.display = 'block';
+      }
     });
   </script>
 </body>

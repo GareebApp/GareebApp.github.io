@@ -1,0 +1,38 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "3X95TX5MG3.sa.gareeb.app"
+                ],
+                "components": [
+                    {
+                        "/": "/booking/*"
+                    },
+                    {
+                        "/": "/room/*"
+                    },
+                    {
+                        "/": "/service-provider/*"
+                    },
+                    {
+                        "/": "/index.html",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/tos.html",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/404.html",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/assets/*",
+                        "exclude": true
+                    }
+                ]
+            }
+        ]
+    }
+}
